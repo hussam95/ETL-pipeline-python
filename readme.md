@@ -32,7 +32,7 @@ This repository builds custom ETL pipelines in Python. Two data pipelines have b
 
 1. **tk-5-normalization.py**
 
-     This file implements the complete pipeline from extracting the data from flat files to creating three relational tables (two facts and one dim table) in SQL Server. The script also populates over 25k rows of data in 24+ columns in the three tables of the database in a way that the databse is in *[2nd Normal form](https://www.geeksforgeeks.org/difference-between-1nf-and-2nf-in-dbms/?ref=lbp).*
+     This file implements the complete pipeline from extracting the data from flat files to creating three relational tables (two facts and one dim table) in SQL Server. The script also populates over 25k rows of data in 24+ columns in the three tables of the database in a way that the database is in *[2nd Normal form](https://www.geeksforgeeks.org/difference-between-1nf-and-2nf-in-dbms/?ref=lbp).*
 
 2. **tk-5.py**
 
@@ -44,8 +44,7 @@ This repository builds custom ETL pipelines in Python. Two data pipelines have b
 
 4. **mongo.py**
 
-    This file was created to establish a connection with MongoDB database hosted on AWS from MongoDB Atlas. This file uses a config file that contains the required credentials (connections string, user, password) to connect to MongoDB. The config file is not a part of this repo for obvoious reasons.
+    This file was created to establish a connection with MongoDB database hosted on AWS from MongoDB Atlas. This file uses a config file that contains the required credentials (connections string, user, password) to connect to MongoDB. The config file is not a part of this repo for obvious reasons.
 
 5. **data.py**
-    This file uses a custom python class to extract and transform raw data from flat files so that it can be inserted into a table on MongoDB cluster on Atlas. Two different collecitons are created in the table to store data using over half a dozen documents in each collection.
-
+    This file uses a custom python class to extract and transform raw data from flat files so that it can be inserted into a table on MongoDB cluster on Atlas. Two different collections are created in the table to store data using over half a dozen documents in each collection.
