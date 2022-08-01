@@ -13,7 +13,7 @@ df = pd.DataFrame(data)
 imp_cols=df.columns[2:].to_list()
 df = df[imp_cols]
 
-# Pick first trimester data (dim-students) or pick all (facts-performance) or pick filtered (exception-joins t2) 
+# Pick first trimester data (dim-students) or pick all (facts-performance/schools) or pick filtered (exception-joins t2) 
 joined_t2_ids = [
                     id 
                     for id in (df[df["Trimester"]==2]["Student ID"].unique().tolist())
@@ -31,12 +31,13 @@ old_cols = ["Student ID","Gender","Reported Race","Student Is Special Ed?",504,
             "Report Card: English TCRWP level","Report Card: Spanish TCRWP level","Report Card: Op & Alg Thinking",
             "Report Card: Num & Ops in Base Ten","Report Card: Measurement and Data","Report Card: Geometry",
             "Report Card: Math Fluency","STAR Reading District BC Name","STAR Math District BC Name",
-            "Dibels Composite Level","First Name","Last Name","Year","Trimester", "Vision Scholars"]
+            "Dibels Composite Level","First Name","Last Name","Year","Trimester", "Vision Scholars", "School",
+            "Grade Level"]
 
 new_cols = ["STUDENT_ID","GENDER","REPORTED_RACE","STUDENT_IS_SPECIAL","FIVE_HUNDRED_FOUR","SED_FROM_CALPADS",
             "MCKVHOMELESS","SUSPENSIONS","ATTENDANCE","ENGLISH", "SPANISH","OP_ALG_THINKING","NUM_OPS",
             "MEASUREMENT_AND_DATA","GEOMETRY","MATH_FLUENCY","STAR_READING","STAR_MATH","DIBELS",
-            "FIRST_NAME","LAST_NAME","YEAR","TRIMESTER", "VISION_SCHOLARS"]
+            "FIRST_NAME","LAST_NAME","YEAR","TRIMESTER", "VISION_SCHOLARS", "SCHOOL","GRADE_LEVEL"]
 
 # Replace messy col names with sql-compliant col names
 mapper={}
@@ -198,3 +199,47 @@ print(f"{c} records added successfully to performance table")
 conn.commit()
 
 
+#Schools, grade level incorporation 
+
+
+try:
+    conn = pyodbc.connect('Driver={SQL Server};'
+                    'Server=LAPTOP-57F3LA9L;'
+                    'Database=RTFISHER_ELEMENTARY;'
+                    'Trusted_Connection=yes;')
+    
+    print("Connected successfully to SqlServer database!")
+    
+except Exception as e:
+    print("Unable to connect to SqlServer Database")
+
+# Cursor object to execute SQL queries
+cursor = conn.cursor()
+
+# Create another facts Table 'Schools'
+cursor.execute('''
+		CREATE TABLE Schools (
+			STUDENT_ID int foreign key references Students(STUDENT_ID),
+            GRADE_LEVEL char(200),
+            SCHOOL char (300)
+            
+			)
+               ''')
+conn.commit()
+
+for row in df.itertuples():
+    try:
+        cursor.execute('''
+                    INSERT INTO Schools (STUDENT_ID, GRADE_LEVEL, SCHOOL)
+                    VALUES (?,?,?)
+                    ''' ,
+                    row.STUDENT_ID,
+                    row.GRADE_LEVEL,
+                    row.SCHOOL
+        )
+
+      
+    except Exception as e:
+        print(e) 
+
+conn.commit()
