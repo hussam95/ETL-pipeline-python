@@ -27,3 +27,25 @@ This repository builds custom ETL pipelines in Python. Two data pipelines have b
 
 2. In the second ETL pipeline, data is extracted from flat files using Pandas. Data is then transformed according to the requirements using Pandas and Numpy. Finally, the data is loaded in a SQL database, SQL Server, hosted locally. MS SQL Server's recommended connector for Python, [pyodbc](https://pypi.org/project/pyodbc/), has been used in data loading step. **Due diligence has been exercised in ensuring compliance with key database engineering concepts such as [database normalization](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description).**
 ![Screenshot](etl_sqlserver.jpg)
+
+## Files in Repo
+
+1. **tk-5-normalization.py**
+
+     This file implements the complete pipeline from extracting the data from flat files to creating three relational tables (two facts and one dim table) in SQL Server. The script also populates over 25k rows of data in 24+ columns in the three tables of the database in a way that the databse is in *[2nd Normal form](https://www.geeksforgeeks.org/difference-between-1nf-and-2nf-in-dbms/?ref=lbp).*
+
+2. **tk-5.py**
+
+    This file was created to create a simple database (*First Normal Form*) in SQL Server while populating db table with values by iterating over a pandas dataframe.
+
+3. **sqlserver.py**
+
+    This file was created to test db connection with SQL Server hosted on the local machine. Moreover, a table was created in the db and a few rows were added in it.
+
+4. **mongo.py**
+
+    This file was created to establish a connection with MongoDB database hosted on AWS from MongoDB Atlas. This file uses a config file that contains the required credentials (connections string, user, password) to connect to MongoDB. The config file is not a part of this repo for obvoious reasons.
+
+5. **data.py**
+    This file uses a custom python class to extract and transform raw data from flat files so that it can be inserted into a table on MongoDB cluster on Atlas. Two different collecitons are created in the table to store data using over half a dozen documents in each collection.
+
