@@ -47,4 +47,5 @@ This repository builds custom ETL pipelines in Python. Two data pipelines have b
     This file was created to establish a connection with MongoDB database hosted on AWS from MongoDB Atlas. This file uses `config` module that contains the required credentials (connections string, user, password) to connect to MongoDB. **The config module is not a part of this repo and you can use your own config file with mongo.py to establish a connection with MongoDB.**
 
 5. **data.py**
+
     This file uses a custom python class to extract and transform raw data from flat files so that it can be inserted into a db on MongoDB cluster on Atlas. Two different collections are created in the db to store half a dozen documents in each collection.
