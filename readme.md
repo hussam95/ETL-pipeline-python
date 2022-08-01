@@ -2,7 +2,7 @@
 
 ## Background
 
-ETL is the backbone of any data related task. ETL is an acronym for Extract, Transform, and Load. Real world data is often clumsy and requires certain degree of preprocessing before it can be fed to end applications. ETL pipelines are designed to achieve the goal of data preprocessing. They take in raw data and spit out clean data stored in SQL or NoSQL databases.
+ETL pipelines are the backbone of any data related task. ETL is an acronym for Extract, Transform, and Load. Real world data is often clumsy and requires certain degree of preprocessing before it can be fed to end applications. ETL pipelines are designed to achieve the goal of data preprocessing. They take in raw data and spit out clean data stored in SQL or NoSQL databases.
 
 ![Screenshot](etl.png)
 
