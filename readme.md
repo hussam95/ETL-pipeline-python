@@ -22,11 +22,9 @@ The loaded data is then used in end applications. One possible use case is using
 
 This repository builds custom ETL pipelines in Python. Two data pipelines have been designed using the files in this repository:
 
+![Screenshot](etl_mongo.jpg)
+
 1. In the first ETL pipeline, raw data is extracted from flat files using Pandas. The extracted data is then transformed using Pandas and Numpy. Finally, the transformed data is loaded in a NoSQL database, MongoDB, hosted on [MongoDB Atlas](https://www.mongodb.com/atlas/database). The data loading process is carried out with the help of [PyMongo](https://pymongo.readthedocs.io/en/stable/) — MongoDB's recommended driver for Python.
 
-![Screenshot](etl_mongo.jpg)
-2. In the second ETL pipeline, data is extracted from flat files using Pandas. Data is then transformed according to the requirements using Pandas and Numpy. Finally, the data is loaded in a SQL database, SQL Server, hosted locally. MS SQL Server's recommended connector for Python, [pyodbc](https://pypi.org/project/pyodbc/), has been used in data loading step.
-
-**Due diligence has been exercised in ensuring compliance with key database engineering concepts such as [database normalization](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description).**
-
 ![Screenshot](etl_sqlserver.jpg)
+2. In the second ETL pipeline, data is extracted from flat files using Pandas. Data is then transformed according to the requirements using Pandas and Numpy. Finally, the data is loaded in a SQL database, SQL Server, hosted locally. MS SQL Server's recommended connector for Python, [pyodbc](https://pypi.org/project/pyodbc/), has been used in data loading step. **Due diligence has been exercised in ensuring compliance with key database engineering concepts such as [database normalization](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description).**
