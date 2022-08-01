@@ -16,7 +16,7 @@ Every ETL pipeline has three stages:
 
 3. Loading of data in SQL or NoSQL databases
 
-The loaded data is then used in end applications. One possible use case is using the cleaned data for business reporting using tools like [Tableau](https://www.tableau.com/) and [MS Power BI](https://powerbi.microsoft.com/).
+The loaded data is then used in end applications. One possible use case is analyzing the cleaned data for business reporting using tools like [Tableau](https://www.tableau.com/) and [MS Power BI](https://powerbi.microsoft.com/).
 
 ## Explaining Work in Repo
 
