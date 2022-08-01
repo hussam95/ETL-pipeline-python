@@ -79,82 +79,82 @@ except Exception as e:
 # Cursor object to execute SQL queries
 cursor = conn.cursor()
 
-# # Create Dimension Table
-# cursor.execute('''
-# 		CREATE TABLE Students (
-# 			STUDENT_ID int primary key,
-# 			"FIRST_NAME" char(200),
-#             "LAST_NAME" char(200),
-#             GENDER char(50),
-# 			REPORTED_RACE char(50),
-#             STUDENT_IS_SPECIAL char(50),
-#             FIVE_HUNDRED_FOUR char(50),
-#             SED_FROM_CALPADS char(50),
-#             MCKVHOMELESS char(50)
+# Create Dimension Table
+cursor.execute('''
+		CREATE TABLE Students (
+			STUDENT_ID int primary key,
+			"FIRST_NAME" char(200),
+            "LAST_NAME" char(200),
+            GENDER char(50),
+			REPORTED_RACE char(50),
+            STUDENT_IS_SPECIAL char(50),
+            FIVE_HUNDRED_FOUR char(50),
+            SED_FROM_CALPADS char(50),
+            MCKVHOMELESS char(50)
             
             
-# 			)
-#                ''')
-# conn.commit()
+			)
+               ''')
+conn.commit()
 
-# Insert DataFrame to Table
-# c=0
-# for row in df.itertuples():
-#     try:
-#         cursor.execute('''
-#                     INSERT INTO Students (STUDENT_ID,"FIRST_NAME","LAST_NAME",GENDER,REPORTED_RACE,STUDENT_IS_SPECIAL,
-#                     FIVE_HUNDRED_FOUR,SED_FROM_CALPADS,MCKVHOMELESS)
-#                     VALUES (?,?,?,?,?,?,?,?,?)
-#                     ''' ,
-#                     row.STUDENT_ID,
-#                     row.FIRST_NAME,
-#                     row.LAST_NAME,
-#                     row.GENDER,
-#                     row.REPORTED_RACE,
-#                     row.STUDENT_IS_SPECIAL,
-#                     row.FIVE_HUNDRED_FOUR,
-#                     row.SED_FROM_CALPADS,
-#                     row.MCKVHOMELESS
+#Insert DataFrame to Table
+c=0
+for row in df.itertuples():
+    try:
+        cursor.execute('''
+                    INSERT INTO Students (STUDENT_ID,"FIRST_NAME","LAST_NAME",GENDER,REPORTED_RACE,STUDENT_IS_SPECIAL,
+                    FIVE_HUNDRED_FOUR,SED_FROM_CALPADS,MCKVHOMELESS)
+                    VALUES (?,?,?,?,?,?,?,?,?)
+                    ''' ,
+                    row.STUDENT_ID,
+                    row.FIRST_NAME,
+                    row.LAST_NAME,
+                    row.GENDER,
+                    row.REPORTED_RACE,
+                    row.STUDENT_IS_SPECIAL,
+                    row.FIVE_HUNDRED_FOUR,
+                    row.SED_FROM_CALPADS,
+                    row.MCKVHOMELESS
 
                     
-#         )
+        )
 
-#         c+=1
+        c+=1
 
     
     
-#     except Exception as e:
-#         print(e)             
+    except Exception as e:
+        print(e)             
 
-# print(f"{c} records added successfully to students")   
+print(f"{c} records added successfully to students")   
 
                 
-# conn.commit()
+conn.commit()
 
-# Create Facts Table
-# cursor.execute('''
-# 		CREATE TABLE Performance (
-# 			STUDENT_ID int foreign key references Students(STUDENT_ID),
-# 			SUSPENSIONS decimal,
-#             ATTENDANCE decimal(5,4),
-#             "ENGLISH" char(200),
-#             "SPANISH" decimal,
-#             "OP_ALG_THINKING" decimal,
-#             "NUM_OPS" decimal,
-#             "MEASUREMENT_AND_DATA" char(200),
-#             "GEOMETRY" decimal,
-#             "MATH_FLUENCY" decimal,
-#             "STAR_READING" char(200),
-#             "STAR_MATH" char(200),
-#             "DIBELS" char(200),
-#             "YEAR" char(200),
-#             "TRIMESTER" int,
-#             "VISION_SCHOLARS" char(200)
+#Create Facts Table
+cursor.execute('''
+		CREATE TABLE Performance (
+			STUDENT_ID int foreign key references Students(STUDENT_ID),
+			SUSPENSIONS decimal,
+            ATTENDANCE decimal(5,4),
+            "ENGLISH" char(200),
+            "SPANISH" decimal,
+            "OP_ALG_THINKING" decimal,
+            "NUM_OPS" decimal,
+            "MEASUREMENT_AND_DATA" char(200),
+            "GEOMETRY" decimal,
+            "MATH_FLUENCY" decimal,
+            "STAR_READING" char(200),
+            "STAR_MATH" char(200),
+            "DIBELS" char(200),
+            "YEAR" char(200),
+            "TRIMESTER" int,
+            "VISION_SCHOLARS" char(200)
 
             
-# 			)
-#                ''')
-# conn.commit()
+			)
+               ''')
+conn.commit()
 
 
 # # Insert DataFrame to Facts Table
